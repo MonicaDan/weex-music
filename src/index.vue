@@ -5,8 +5,7 @@
     </div>
     <div style="width:750px;height:82px;background-color:#ffffff;flex-direction:row;">
       <div v-for="(item,index) in title" :key="index" class="topTabItem" @click="jump(item,index)" >
-        <text style="line-height:80px;font-size:40px;text-align:center;"    :style="{color:currentTabIndex === index? '#31c27c':'#000000'}"
-    > {{item.title}}</text>
+        <text style="line-height:80px;font-size:40px;text-align:center;" :style="{color:currentTabIndex === index? '#31c27c':'#000000'}">{{item.title}}</text>
         <div style="flex:1;height:6px;background-color:#31c27c;" v-if="currentTabIndex===index" >
         </div>
       </div>
@@ -40,16 +39,13 @@ export default {
           path: "/search"
         }
       ],
-  
-      //设置当前的index为0
+      //设置默认index为0
       currentTabIndex: 0
     };
   },
   created() {
-    this.currentTabIndex = CommonUtils.checkRoutePath(
-      this.title,
-      this.$route.path
-    );
+    //返回_newTabIndex 赋值给currentIndex
+    this.currentTabIndex = CommonUtils.checkRoutePath(this.title,this.$route.path);
   },
   methods: {
     jump(e, i) {
